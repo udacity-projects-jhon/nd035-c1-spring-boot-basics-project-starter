@@ -18,9 +18,15 @@ public class NoteServiceImp implements NoteService {
         return notesMapper.getNotes(userId);
     }
 
-
+    @Override
     public int create(int userId, Note note) {
         note.setUserId(userId);
         return notesMapper.createNote(note);
     }
+
+    @Override
+    public void delete(int userId, int noteId) {
+        notesMapper.deleteNote(userId, noteId);
+    }
+
 }

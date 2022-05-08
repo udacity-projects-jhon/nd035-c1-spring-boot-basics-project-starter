@@ -8,4 +8,6 @@ public interface NoteService {
     List<Note> getByUserId(int userId);
 
     int create(int userId, Note note);
+
+    void delete(int userId, int noteId);
 }
