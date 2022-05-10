@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+    <title>Home</title>
+</head>
+<body class="p-3 mb-2 bg-light text-black">
+
+<a class="btn btn-primary" th:href="@{/home}">Back to Home</a>
+
+<h1>Editing note</h1>
+
+<div class="modal-body">
+    <form th:object="${note}" th:action="@{/notes/{id}(id=${note.noteId})}" th:method="put">
+        <input type="hidden" name="noteId" id="note-id">
+        <div class="form-group">
+            <label for="note-title" class="col-form-label">Title</label>
+            <input th:placeholder="${note.noteTitle}" type="text" name= "noteTitle" th:field="*{noteTitle}" class="form-control" id="note-title" maxlength="20" required>
+        </div>
+        <div class="form-group">
+            <label for="note-description" class="col-form-label">Description</label>
+            <textarea th:placeholder="${note.noteDescription}" class="form-control" name="noteDescription" th:field="*{noteDescription}" id="note-description" rows="5" maxlength="1000" required></textarea>
+        </div>
+        <button id="noteSubmit" type="submit"  class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<!--<%= render "form", high_score: @high_score %>-->
+
+<!--<br>-->
+
+<!--<div>-->
+<!--    <%= link_to "Show this high score", @high_score %> |-->
+<!--    <%= link_to "Back to high scores", high_scores_path %>-->
+<!--</div>-->
+
+
+<script th:src="@{/js/jquery-slim.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

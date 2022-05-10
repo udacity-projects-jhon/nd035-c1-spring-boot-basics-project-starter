@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -27,6 +28,20 @@ public interface NotesMapper {
             "VALUES(#{noteTitle}, #{noteDescription}, #{userId})")
     @Options(useGeneratedKeys = true, keyProperty = "noteId")
     int createNote(Note note);
+
+    @Select("SELECT * FROM NOTES WHERE userid = #{userId} AND noteid = #{noteId}")
+    @Results({
+            @Result(property = "noteId", column = "noteid"),
+            @Result(property = "noteTitle", column = "notetitle"),
+            @Result(property = "noteDescription", column = "notedescription"),
+            @Result(property = "userId", column = "userid")
+    })
+    Note getNote(int userId, int noteId);
+
+    @Update("UPDATE NOTES " +
+            "SET notetitle=#{noteTitle}, notedescription='${noteDescription}' " +
+            "WHERE userid=#{userId} AND noteid=#{noteId}")
+    void updateNote(Note note);
 
     @Delete("DELETE FROM NOTES WHERE userid = #{userId} AND noteid = #{noteId}")
     void deleteNote(int userId, int noteId);

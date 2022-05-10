@@ -25,6 +25,16 @@ public class NoteServiceImp implements NoteService {
     }
 
     @Override
+    public Note getByIds(int userId, int noteId) {
+        return notesMapper.getNote(userId, noteId);
+    }
+
+    @Override
+    public void update(Note note) {
+        notesMapper.updateNote(note);
+    }
+
+    @Override
     public void delete(int userId, int noteId) {
         notesMapper.deleteNote(userId, noteId);
     }

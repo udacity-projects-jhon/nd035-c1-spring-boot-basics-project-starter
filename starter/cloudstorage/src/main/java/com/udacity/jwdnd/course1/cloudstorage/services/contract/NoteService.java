@@ -9,5 +9,9 @@ public interface NoteService {
 
     int create(int userId, Note note);
 
+    Note getByIds(int userId, int noteId);
+
     void delete(int userId, int noteId);
+
+    void update(Note note);
 }
