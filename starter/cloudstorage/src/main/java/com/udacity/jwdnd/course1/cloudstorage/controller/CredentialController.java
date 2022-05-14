@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 @RequestMapping("/credentials")
 public class CredentialController {
-
     private final CredentialService credentialService;
 
     @PostMapping

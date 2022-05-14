@@ -4,9 +4,16 @@ import lombok.Data;
 
 @Data
 public class File {
+
     private Integer fileid;
-    private String fileName;
+
+    private String filename;
+
     private String contenttype;
+
     private String filesize;
-    private String filedata;
+
+    private byte[] filedata;
+
+    private Integer userid;
 }
