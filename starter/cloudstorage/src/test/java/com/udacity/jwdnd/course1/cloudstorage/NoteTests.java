@@ -107,6 +107,7 @@ public class NoteTests {
         noteDescriptionDriver.sendKeys(editedNote.getNoteDescription());
 
         driver.findElement(By.id("noteSubmit")).click();
+        driver.findElement(By.tagName("a")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-notes-tab")));
         driver.findElement(By.id("nav-notes-tab")).click();
 
@@ -142,6 +143,7 @@ public class NoteTests {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userTable")));
         driver.findElement(By.id("userTable")).findElement(By.tagName("form")).submit();
 
+        driver.findElement(By.tagName("a")).click();
         driver.findElement(By.id("nav-notes-tab")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userTable")));
         var userTable = driver.findElement(By.id("userTable"));
@@ -166,6 +168,7 @@ public class NoteTests {
         noteDescriptionDriver.sendKeys(note.getNoteDescription());
 
         driver.findElement(By.id("noteSubmit")).submit();
+        driver.findElement(By.tagName("a")).click();
         driver.findElement(By.id("nav-notes-tab")).click();
     }
 

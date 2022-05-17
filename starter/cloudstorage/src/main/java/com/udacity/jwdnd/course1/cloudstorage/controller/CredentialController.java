@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequiredArgsConstructor
@@ -21,10 +22,14 @@ public class CredentialController {
     private final CredentialService credentialService;
 
     @PostMapping
-    public String create(Authentication authentication, @ModelAttribute("credential") Credential credential) {
+    public String create(Authentication authentication,
+                         @ModelAttribute("credential") Credential credential,
+                         RedirectAttributes redir) {
+
         var userId = (int) authentication.getPrincipal();
         credentialService.create(userId, credential);
-        return "redirect:/home";
+        redir.addFlashAttribute("signupSuccess", true);
+        return "redirect:/result";
     }
 
     @GetMapping("{credentialId}")
@@ -37,18 +42,24 @@ public class CredentialController {
 
     @PutMapping("{credentialId}")
     public String edit(@ModelAttribute("credential") Credential credential, Authentication authentication,
-                       @PathVariable int credentialId) {
+                       @PathVariable int credentialId, RedirectAttributes redir) {
         var userId = (int) authentication.getPrincipal();
         credential.setCredentialid(credentialId);
         credential.setUserid(userId);
         credentialService.update(credential);
-        return "redirect:/home";
+        redir.addFlashAttribute("signupSuccess", true);
+        return "redirect:/result";
     }
 
     @DeleteMapping("{credentialId}")
-    public String delete(Authentication authentication, @PathVariable int credentialId) {
+    public String delete(Authentication authentication,
+                         @PathVariable int credentialId,
+                         RedirectAttributes redir) {
+
         var userId = (int) authentication.getPrincipal();
         credentialService.delete(userId, credentialId);
-        return "redirect:/home";
+
+        redir.addFlashAttribute("signupSuccess", true);
+        return "redirect:/result";
     }
 }

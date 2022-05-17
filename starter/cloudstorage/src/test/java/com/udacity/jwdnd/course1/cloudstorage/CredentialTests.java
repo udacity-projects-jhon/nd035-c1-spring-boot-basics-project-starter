@@ -117,6 +117,7 @@ public class CredentialTests {
         credentialPassword.sendKeys(newCredential.getPassword());
 
         driver.findElement(By.id("credentialSubmit")).click();
+        driver.findElement(By.tagName("a")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("nav-credentials-tab")));
         driver.findElement(By.id("nav-credentials-tab")).click();
 
@@ -154,6 +155,7 @@ public class CredentialTests {
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("credentialTable")));
         driver.findElement(By.id("credentialTable")).findElement(By.tagName("form")).submit();
 
+        driver.findElement(By.tagName("a")).click();
         driver.findElement(By.id("nav-credentials-tab")).click();
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.id("credentialTable")));
         var credentialTable = driver.findElement(By.id("credentialTable"));
@@ -182,6 +184,7 @@ public class CredentialTests {
         credentialPassword.sendKeys(credential.getPassword());
 
         driver.findElement(By.id("credentialSubmit")).submit();
+        driver.findElement(By.tagName("a")).click();
         driver.findElement(By.id("nav-credentials-tab")).click();
     }
 }

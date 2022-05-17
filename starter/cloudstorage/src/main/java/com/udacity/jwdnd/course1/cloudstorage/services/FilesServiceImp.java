@@ -23,7 +23,7 @@ public class FilesServiceImp implements FilesService {
     @SneakyThrows
     public int create(MultipartFile multipartFile, int userId) {
         var file = new File();
-        file.setFilename(multipartFile.getName());
+        file.setFilename(multipartFile.getOriginalFilename());
         file.setContenttype(multipartFile.getContentType());
         file.setFilesize(Long.toString(multipartFile.getSize()));
         file.setFiledata(multipartFile.getBytes());
